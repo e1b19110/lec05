@@ -28,12 +28,15 @@ public class Sample3AuthConfiguration extends WebSecurityConfigurerAdapter {
     auth.inMemoryAuthentication().withUser("seller1").password(passwordEncoder().encode("seller")).roles("SELLER");
 
     // $ sshrun htpasswd -nbBC 10 customer1 Cust0m
-    /*auth.inMemoryAuthentication().withUser("customer1")
-        .password("$2y$10$8IbzoKwqlCJf.z8/7YThKuSB1nGAQSr8rtHN7pQzm4mx9nrOhsN1C").roles("CUSTOMER");
-    auth.inMemoryAuthentication().withUser("customer2")
-        .password("$2y$10$8IbzoKwqlCJf.z8/7YThKuSB1nGAQSr8rtHN7pQzm4mx9nrOhsN1C").roles("CUSTOMER");
-    auth.inMemoryAuthentication().withUser("seller")
-        .password("$2y$10$8IbzoKwqlCJf.z8/7YThKuSB1nGAQSr8rtHN7pQzm4mx9nrOhsN1C").roles("SELLER");*/
+    /*
+     * auth.inMemoryAuthentication().withUser("customer1")
+     * .password("$2y$10$8IbzoKwqlCJf.z8/7YThKuSB1nGAQSr8rtHN7pQzm4mx9nrOhsN1C").
+     * roles("CUSTOMER"); auth.inMemoryAuthentication().withUser("customer2")
+     * .password("$2y$10$8IbzoKwqlCJf.z8/7YThKuSB1nGAQSr8rtHN7pQzm4mx9nrOhsN1C").
+     * roles("CUSTOMER"); auth.inMemoryAuthentication().withUser("seller")
+     * .password("$2y$10$8IbzoKwqlCJf.z8/7YThKuSB1nGAQSr8rtHN7pQzm4mx9nrOhsN1C").
+     * roles("SELLER");
+     */
   }
 
   @Bean
@@ -52,9 +55,8 @@ public class Sample3AuthConfiguration extends WebSecurityConfigurerAdapter {
     // antMatchers().authenticated がantMatchersへのアクセスに認証を行うことを示す
     // antMatchers()の他にanyRequest()と書くとあらゆるアクセス先を表現できる
     // authenticated()の代わりにpermitAll()と書くと認証処理が不要であることを示す
-    http.authorizeRequests().antMatchers("/").authenticated();
-    /*http.authorizeRequests().antMatchers("/sample4/**").authenticated();
-    http.authorizeRequests().antMatchers("/sample5/**").authenticated();*/
+
+    http.authorizeRequests().antMatchers("/sample5/**").authenticated();
 
     // Spring Securityの機能を利用してログアウト．ログアウト時は http://localhost:8000/ に戻る
     http.logout().logoutSuccessUrl("/");
@@ -64,7 +66,8 @@ public class Sample3AuthConfiguration extends WebSecurityConfigurerAdapter {
      * CSRFがONになっているとフォームが対応していないためアクセスできない
      * HTTPヘッダのX-Frame-OptionsがDENYになるとiframeでlocalhostでのアプリが使えなくなるので，H2DBのWebクライアントのためだけにdisableにする必要がある
      */
-    /*http.csrf().disable();
-    http.headers().frameOptions().disable();*/
+    /*
+     * http.csrf().disable(); http.headers().frameOptions().disable();
+     */
   }
 }
