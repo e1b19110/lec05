@@ -1,4 +1,4 @@
-package team13.security;
+package team13.lec05.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
