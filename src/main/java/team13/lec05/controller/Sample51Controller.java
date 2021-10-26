@@ -62,7 +62,6 @@ public class Sample51Controller {
     return "sample51.html";
   }
 
-
   /**
    * IDをクエリParamで，果物の名前と値段をフォームで受け取り，DBを更新する /*
    *
@@ -74,16 +73,21 @@ public class Sample51Controller {
    *
    * @return
    */
-  /*
-   * @PostMapping("step5") public String sample55(@RequestParam Integer
-   * id, @RequestParam String name, @RequestParam Integer price, ModelMap model) {
-   * System.out.println("step5"); System.out.println(id);
-   * System.out.println(name); System.out.println(price); Fruit fruit = new
-   * Fruit(id, name, price); // update fMapper.updateById(fruit); // フルーツリストを取得
-   * ArrayList<Fruit> fruits2 = fMapper.selectAllFruit();
-   * model.addAttribute("fruits2", fruits2);
-   *
-   * return "sample51.html"; }
-   */
+
+  @PostMapping("step5")
+  public String sample55(@RequestParam Integer id, @RequestParam String name, @RequestParam Integer price,
+      ModelMap model) {
+    System.out.println("step5");
+    System.out.println(id);
+    System.out.println(name);
+    System.out.println(price);
+    Fruit fruit = new Fruit(id, name, price);
+    fMapper.updateById(fruit);
+    // フルーツリストを取得
+    ArrayList<Fruit> fruits2 = fMapper.selectAllFruit();
+    model.addAttribute("fruits2", fruits2);
+
+    return "sample51.html";
+  }
 
 }
